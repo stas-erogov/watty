@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration >
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p [%t] %C{2} %x - %m%n"/>
+        </Console>
+        <RollingFile name="fileNettyOut" fileName="netty.output.log" filePattern="netty.output.log.%i" bufferedIO="false">
+            <PatternLayout pattern="%d %-5p [%t] %C{2} %x - %m%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+        <Logger name="io.netty" level="debug" additivity="false">
+            <AppenderRef ref="fileNettyOut"/>
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+    </Loggers>
+</Configuration>
